@@ -5,8 +5,9 @@ import tempfile
 import shutil
 from datetime import datetime
 
+
 def get_commit_data(repo_path, since_date):
-    """Извлекает данные о коммитах из всех веток git-репозитория."""
+    # Извлекает данные о коммитах из всех веток git-репозитория.
     # Получаем список веток с их последними коммитами
     branches_cmd = ["git", "-C", repo_path, "for-each-ref", "--format=%(refname:short) %(objectname)", "refs/heads/"]
     branches_result = subprocess.run(branches_cmd, capture_output=True, text=True, check=True)
@@ -46,8 +47,9 @@ def get_commit_data(repo_path, since_date):
 
     return commits
 
+
 def generate_mermaid_graph(commits):
-    """Создает Mermaid-описание графа зависимостей всех веток."""
+    # Создает Mermaid-описание графа зависимостей всех веток.
     graph = ["graph TD"]
     branch_heads = {}
 
@@ -69,9 +71,8 @@ def generate_mermaid_graph(commits):
     return "\n".join(graph)
 
 
-
 def save_mermaid_graph(mermaid_code, mermaid_cli, output_path):
-    """Сохраняет Mermaid-граф в файл PNG."""
+    # Сохраняет Mermaid-граф в файл PNG.
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mmd") as temp_file:
         temp_file.write(mermaid_code.encode("utf-8"))
         temp_file_path = temp_file.name
@@ -81,6 +82,7 @@ def save_mermaid_graph(mermaid_code, mermaid_cli, output_path):
         subprocess.run(cmd, check=True)
     finally:
         os.remove(temp_file_path)
+        print("Mermaid")
 
 
 def main():
@@ -121,7 +123,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 # python dependency_visualizer.py --mermaid C:\Users\mladi\AppData\Roaming\npm\mmdc.cmd --repo /path/to/repo --output graph.png --since 2024-01-01
 # python git_viz.py --mermaid C:\Users\mladi\AppData\Roaming\npm\mmdc.cmd --url https://github.com/Rblba20/git_lab1_lesson2 --output graph.png --since 2016-01-01
