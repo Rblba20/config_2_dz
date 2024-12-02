@@ -21,11 +21,10 @@
 
 • Путь к анализируемому репозиторию. 
 
-Запуск программы - python dependency_visualizer.py --mermaid /path/to/mmdc.cmd --repo /path/to/repo --output graph.png --since 2024-01-01
 • Путь к файлу с изображением графа зависимостей. 
 
 • Дата коммитов в репозитории. 
 
 Все функции визуализатора зависимостей должны быть покрыты тестами. 
 
-Запуск программы - 
+Запуск программы - python dependency_visualizer.py --mermaid /path/to/mmdc.cmd --repo /path/to/repo --output graph.png --since 2024-01-01
